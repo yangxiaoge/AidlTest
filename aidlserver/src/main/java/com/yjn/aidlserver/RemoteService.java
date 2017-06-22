@@ -19,6 +19,7 @@ public class RemoteService extends Service {
 
         @Override
         public int add(int a, int b) throws RemoteException {
+            Log.i(TAG,"收到服务器的计算请求！");
             return a + b;
         }
     };

@@ -62,8 +62,14 @@ public class TestAIDL extends AppCompatActivity {
 
     @OnClick(R.id.button)
     public void onClick() {
-        Intent intent = new Intent("com.yjn.aidlserver.RemoteService");
-        bindService(intent, connection, BIND_AUTO_CREATE);
+//        Intent intent = new Intent("com.yjn.aidlserver.RemoteService");
+//        bindService(intent, connection, BIND_AUTO_CREATE);
+
+        //解决 Android 5.0中出现的警告：Service Intent must be explicit
+        Intent mIntent = new Intent();
+        mIntent.setAction("com.yjn.aidlserver.RemoteService");//你定义的service的action
+        mIntent.setPackage("com.yjn.aidlserver");//这里你需要设置你应用的包名
+        bindService(mIntent, connection, BIND_AUTO_CREATE);
 
         a = Integer.parseInt(editText.getText().toString());
         b = Integer.parseInt(editText2.getText().toString());
